@@ -9,11 +9,12 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('student_portal', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Student',
+            name='Teacher',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
@@ -28,39 +29,23 @@ class Migration(migrations.Migration):
                 ('post_code', models.CharField(blank=True, max_length=256, null=True)),
                 ('rdf_number', models.CharField(max_length=256)),
                 ('dob', models.DateField()),
-                ('current_year', models.CharField(blank=True, max_length=256, null=True)),
-                ('session', models.CharField(blank=True, max_length=256, null=True)),
-                ('roll_number', models.CharField(blank=True, max_length=256, null=True)),
-                ('registration_number', models.CharField(blank=True, max_length=256, null=True)),
+                ('position', models.CharField(max_length=256)),
                 ('is_active', models.BooleanField(default=True)),
+                ('joining_date', models.DateField()),
             ],
             options={
                 'abstract': False,
             },
         ),
         migrations.CreateModel(
-            name='Subject',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(max_length=256)),
-                ('code', models.CharField(max_length=256)),
-                ('is_active', models.BooleanField(default=True)),
-            ],
-            options={
-                'abstract': False,
-            },
-        ),
-        migrations.CreateModel(
-            name='StudentSubjectAssociation',
+            name='TeacherSubjectAssociation',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('is_active', models.BooleanField(default=True)),
-                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='student_portal.student')),
                 ('subject', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='student_portal.subject')),
+                ('teacher', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='teacher_portal.teacher')),
             ],
             options={
                 'abstract': False,

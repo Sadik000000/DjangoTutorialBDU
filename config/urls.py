@@ -27,6 +27,7 @@ from config import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/api/card/', include("apps.student_portal.urls", namespace="student_portal")),
+    # path("v1/api/teachers/",include("apps.teacher_portal.urls",namespace="teacher_portal"))
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
         "docs/",

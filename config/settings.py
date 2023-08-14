@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "drf_spectacular",
     'apps.student_portal',
+    'apps.teacher_portal',
 ]
 
 MIDDLEWARE = [
